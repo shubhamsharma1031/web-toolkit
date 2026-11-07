@@ -1,5 +1,7 @@
 # Web Toolkit
 
+![Cover](docs/cover.png)
+
 A collection of six everyday utility tools in one fast, responsive web page, built with plain **HTML, CSS and JavaScript** (no frameworks, no libraries). Everything runs in the browser, so no data is sent to a server.
 
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
@@ -8,7 +10,11 @@ A collection of six everyday utility tools in one fast, responsive web page, bui
 
 **Live demo:** https://shubhamsharma1031.github.io/web-toolkit/
 
-<!-- ![Screenshot](docs/screenshot.png) -->
+## Screenshots
+
+| Word counter | Password generator | JSON formatter |
+|---|---|---|
+| ![Word counter](docs/word_counter.png) | ![Password](docs/password_generator.png) | ![JSON](docs/json_formatter.png) |
 
 ## Tools
 
