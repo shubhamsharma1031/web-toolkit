@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Toolkit: everyday utilities in one place</title>
+  <meta name="description" content="Free browser tools: word counter, password generator, unit converter, JSON formatter, age calculator and text case converter.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">⚒</span> Web Toolkit</div>
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">◐</button>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" aria-label="Tools">
+      <button class="tab active" data-tool="words">📝 Word Counter</button>
+      <button class="tab" data-tool="password">🔐 Password Generator</button>
+      <button class="tab" data-tool="units">📏 Unit Converter</button>
+      <button class="tab" data-tool="json">🧩 JSON Formatter</button>
+      <button class="tab" data-tool="age">🎂 Age Calculator</button>
+      <button class="tab" data-tool="case">🔤 Case Converter</button>
+    </nav>
+
+    <main>
+      <!-- 1. Word counter -->
+      <section class="tool active" id="words">
+        <h1>Word Counter</h1>
+        <p class="sub">Count words, characters, sentences and estimated reading time as you type.</p>
+        <textarea id="wordInput" rows="10" placeholder="Start typing or paste your text here..."></textarea>
+        <div class="stats">
+          <div><b id="wcWords">0</b><span>Words</span></div>
+          <div><b id="wcChars">0</b><span>Characters</span></div>
+          <div><b id="wcNoSpace">0</b><span>Without spaces</span></div>
+          <div><b id="wcSentences">0</b><span>Sentences</span></div>
+          <div><b id="wcParas">0</b><span>Paragraphs</span></div>
+          <div><b id="wcRead">0 min</b><span>Reading time</span></div>
+        </div>
+        <h3>Most used words</h3>
+        <ol id="wcTop" class="top-words"><li class="muted">Type some text to see results</li></ol>
+      </section>
+
+      <!-- 2. Password generator -->
+      <section class="tool" id="password">
+        <h1>Password Generator</h1>
+        <p class="sub">Strong random passwords generated securely in your browser. Nothing is sent anywhere.</p>
+        <div class="output-row">
+          <input id="pwOutput" readonly aria-label="Generated password">
+          <button id="pwCopy" class="btn">Copy</button>
+          <button id="pwNew" class="btn primary">Generate</button>
+        </div>
+        <div class="meter"><div id="pwMeter"></div></div>
+        <p id="pwStrength" class="strength"></p>
+        <div class="options">
+          <label>Length: <b id="pwLenLabel">16</b>
+            <input type="range" id="pwLength" min="6" max="64" value="16"></label>
+          <label><input type="checkbox" id="pwUpper" checked> Uppercase (A-Z)</label>
+          <label><input type="checkbox" id="pwLower" checked> Lowercase (a-z)</label>
+          <label><input type="checkbox" id="pwDigits" checked> Numbers (0-9)</label>
+          <label><input type="checkbox" id="pwSymbols" checked> Symbols (!@#$...)</label>
+          <label><input type="checkbox" id="pwSimilar"> Avoid similar characters (0/O, 1/l/I)</label>
+        </div>
+      </section>
+
+      <!-- 3. Unit converter -->
+      <section class="tool" id="units">
+        <h1>Unit Converter</h1>
+        <p class="sub">Convert length, weight, temperature, area, speed and data size.</p>
+        <div class="field-row">
+          <label>Category
+            <select id="unitCategory"></select></label>
+        </div>
+        <div class="convert-grid">
+          <div>
+            <input type="number" id="unitFromValue" value="1" aria-label="Value to convert">
+            <select id="unitFrom" aria-label="From unit"></select>
+          </div>
+          <button id="unitSwap" class="icon-btn swap" aria-label="Swap units">⇄</button>
+          <div>
+            <input type="text" id="unitToValue" readonly aria-label="Converted value">
+            <select id="unitTo" aria-label="To unit"></select>
+          </div>
+        </div>
+        <p id="unitFormula" class="muted"></p>
+      </section>
+
+      <!-- 4. JSON formatter -->
+      <section class="tool" id="json">
+        <h1>JSON Formatter &amp; Validator</h1>
+        <p class="sub">Format, minify and validate JSON. Errors show the line and column.</p>
+        <textarea id="jsonInput" rows="12" spellcheck="false" placeholder='{"name": "Shubham", "skills": ["Python", "SQL"]}'></textarea>
+        <div class="btn-row">
+          <button id="jsonFormat" class="btn primary">Format</button>
+          <button id="jsonMinify" class="btn">Minify</button>
+          <button id="jsonCopy" class="btn">Copy result</button>
+          <button id="jsonSample" class="btn ghost">Load sample</button>
+          <select id="jsonIndent" aria-label="Indent">
+            <option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tab</option>
+          </select>
+        </div>
+        <p id="jsonStatus" class="status"></p>
+        <pre id="jsonOutput" class="code"></pre>
+      </section>
+
+      <!-- 5. Age calculator -->
+      <section class="tool" id="age">
+        <h1>Age Calculator</h1>
+        <p class="sub">Find exact age in years, months and days, and the countdown to the next birthday.</p>
+        <div class="field-row">
+          <label>Date of birth <input type="date" id="ageDob"></label>
+          <label>Age on <input type="date" id="ageOn"></label>
+          <button id="ageCalc" class="btn primary">Calculate</button>
+        </div>
+        <div id="ageResult" class="age-result"></div>
+      </section>
+
+      <!-- 6. Case converter -->
+      <section class="tool" id="case">
+        <h1>Text Case Converter</h1>
+        <p class="sub">Change text to UPPER, lower, Title, Sentence, camelCase, snake_case and more.</p>
+        <textarea id="caseInput" rows="8" placeholder="Type or paste text here..."></textarea>
+        <div class="btn-row wrap" id="caseButtons">
+          <button class="btn" data-case="upper">UPPERCASE</button>
+          <button class="btn" data-case="lower">lowercase</button>
+          <button class="btn" data-case="title">Title Case</button>
+          <button class="btn" data-case="sentence">Sentence case</button>
+          <button class="btn" data-case="camel">camelCase</button>
+          <button class="btn" data-case="pascal">PascalCase</button>
+          <button class="btn" data-case="snake">snake_case</button>
+          <button class="btn" data-case="kebab">kebab-case</button>
+          <button class="btn ghost" id="caseCopy">Copy</button>
+          <button class="btn ghost" id="caseClear">Clear</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <footer>Built by Shubham Sharma with HTML, CSS and JavaScript</footer>
+  <script src="js/app.js"></script>
+</body>
+</html>
